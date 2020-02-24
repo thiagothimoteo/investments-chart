@@ -21,10 +21,11 @@ const App = () => {
       const data = await response.json()
 
       dispatch({ type: 'fetch_data', payload: data })
+      dispatch({ type: `filter_by_${state.period}` })
     }
 
     getChartData()
-  }, [])
+  }, [state.period])
 
   return (
     <Provider value={value}>

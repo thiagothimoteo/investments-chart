@@ -1,7 +1,7 @@
 import moment from 'moment'
 
 const initialState = {
-  period: 'all_time',
+  period: localStorage.getItem('period') || 'all_time',
   chartData: [],
   filteredChartData: []
 }
