@@ -1,16 +1,61 @@
-import React from 'react';
+import React, { useEffect, useReducer } from 'react';
 import styled from 'styled-components';
+import { PeriodDescription, PeriodSelect, Chart } from './components';
+import { Provider } from './Context'
 
 const Container = styled.div`
   width: 960px;
   margin: 0 auto;
 `
 
-function App() {
+const api = 'https://gist.githubusercontent.com/AgtLucas/a67c345e15c2eb3d4668c9b7e330ac44/raw/1de2450cbe69fde065bca9e498aaaaafcca61257/mock-data.js'
+
+const initialState = {
+  period: 'all_time',
+  chartData: [],
+  filteredChartData: []
+}
+
+const reducer = (state, action) => {
+  switch(action.type) {
+    case 'fetch_data':
+      return { ...state, chartData: action.payload, filteredChartData: action.payload }
+    case 'change_period':
+      return { ...state, period: action.payload }
+    case 'filter_by_last_month':
+      return { ...state, filteredChartData: action.payload }
+    case 'filter_by_last_three_months':
+      return { ...state, filteredChartData: action.payload }
+    case 'filter_by_all_time':
+      return { ...state, filteredChartData: state.chartData }
+    default:
+      throw new Error()
+  }
+}
+
+const App = () => {
+  const [state, dispatch] = useReducer(reducer, initialState)
+  const value = { state, dispatch }
+
+  useEffect(() => {
+    const getChartData = async () => {
+      const response = await fetch(api)
+      const data = await response.json()
+
+      dispatch({ type: 'fetch_data', payload: data })
+    }
+
+    getChartData()
+  }, [])
+
   return (
-    <Container>
-      Hello World
-    </Container>
+    <Provider value={value}>
+      <Container>
+        <PeriodSelect />
+        <PeriodDescription />
+        <Chart data={state.filteredChartData} />
+      </Container>
+    </Provider>
   );
 }
 
