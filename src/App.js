@@ -32,7 +32,7 @@ const App = () => {
       <Container>
         <PeriodSelect />
         <PeriodDescription />
-        <Chart data={state.filteredChartData} />
+        <Chart />
       </Container>
     </Provider>
   );
