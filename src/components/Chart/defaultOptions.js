@@ -19,10 +19,13 @@ export default {
       gridLines: {
         display: false,
       },
+      scaleLabel: {
+        display: true,
+      },
       type: 'time',
       time: {
-        stepSize: 6,
         tooltipFormat: 'DD MMM YY',
+        unit: 'day',
         displayFormats: {
           day: 'DD MMM YY',
         }
