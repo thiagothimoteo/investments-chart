@@ -1,5 +1,7 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import styled from 'styled-components';
+import Context from '../../Context';
+import { periods } from '../../constants'
 
 const StyledDescription = styled.div`
   background-color: #eee;
@@ -8,10 +10,12 @@ const StyledDescription = styled.div`
   margin-bottom: 1rem;
 `
 
-const PeriodDescription = ({ period, ...rest}) => {
+const PeriodDescription = (props) => {
+  const { state } = useContext(Context)
+
   return (
-    <StyledDescription {...rest}>
-      Você está vendo o período <strong>{ period }</strong>
+    <StyledDescription {...props}>
+      Você está vendo o período <strong>{ periods[state.period] }</strong>
     </StyledDescription>
   )
 }
