@@ -4,9 +4,18 @@ import { PeriodDescription, PeriodSelect, Chart } from './components';
 import { Provider } from './Context'
 import { reducer, initialState } from './reducer'
 
-const Container = styled.div`
+const StackContainer = styled.div`
   width: 960px;
+  padding: 2rem;
   margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-row-gap: 2rem;
+
+  > header {
+    display: flex;
+    justify-content: flex-end;
+  }
 `
 
 const api = 'https://gist.githubusercontent.com/AgtLucas/a67c345e15c2eb3d4668c9b7e330ac44/raw/1de2450cbe69fde065bca9e498aaaaafcca61257/mock-data.js'
@@ -29,11 +38,16 @@ const App = () => {
 
   return (
     <Provider value={value}>
-      <Container>
-        <PeriodSelect />
-        <PeriodDescription />
-        <Chart />
-      </Container>
+      <StackContainer>
+        <header>
+          <PeriodSelect />
+        </header>
+        <main>
+          <PeriodDescription />
+          <Chart />
+        </main>
+      </StackContainer>
+
     </Provider>
   );
 }

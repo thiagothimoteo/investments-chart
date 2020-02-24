@@ -7,7 +7,7 @@ const StyledDescription = styled.div`
   background-color: #eee;
   color: #12405b;
   padding: 1rem 2rem;
-  margin-bottom: 1rem;
+  margin-bottom: 2rem;
 `
 
 const PeriodDescription = (props) => {
