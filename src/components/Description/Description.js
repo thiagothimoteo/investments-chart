@@ -19,7 +19,7 @@ const StyledIcon = styled.img`
 const Description = ({ children, icon, ...rest }) => {
   return (
     <StyledDescription {...rest}>
-      <StyledIcon src={icon} />
+      { icon && <StyledIcon src={icon} /> }
       <div>{children}</div>
     </StyledDescription>
   )
