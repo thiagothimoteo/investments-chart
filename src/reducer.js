@@ -66,7 +66,7 @@ const filterByLastTwoYears = item => {
   const year = moment(date).year()
   const currentYear = moment().year()
 
-  return year > twoYearsBack.year() && year < currentYear
+  return year >= twoYearsBack.year() && year < currentYear
 }
 
 export { reducer, initialState }
