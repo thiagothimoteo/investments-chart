@@ -1,12 +1,9 @@
-import React, { useState, useEffect, useContext } from 'react'
+import React, { useState, useEffect } from 'react'
 import { Line } from "react-chartjs-2"
 import defaultOptions from './defaultOptions'
-import Context from '../../Context'
 
-const Chart = ({ customOptions, ...rest }) => {
+const Chart = ({ data, customOptions, ...rest }) => {
   const options = { ...defaultOptions, ...customOptions }
-  const { state } = useContext(Context)
-  const { filteredChartData } = state
   const [chartData, setChartData] = useState({
     labels: [],
     datasets: [{ data: [] }]
@@ -24,11 +21,12 @@ const Chart = ({ customOptions, ...rest }) => {
   }
 
   useEffect(() => {
-    const data = formatData(filteredChartData)
-    const labels = formatLabel(filteredChartData)
+    const items = formatData(data)
+    const labels = formatLabel(data)
+    const backgroundColor = 'rgba(52, 152, 219, 0.75)'
 
-    setChartData({ labels, datasets: [{ data }] })
-  }, [filteredChartData])
+    setChartData({ labels, datasets: [{ data: items, backgroundColor }] })
+  }, [data])
 
   return <Line data={chartData} options={options} {...rest} />
 }

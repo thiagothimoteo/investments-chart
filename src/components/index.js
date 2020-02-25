@@ -1,9 +1,9 @@
-import PeriodDescription from './PeriodDescription'
-import PeriodSelect from './PeriodSelect'
+import Description from './Description'
+import Select from './Select'
 import Chart from './Chart'
 
 export {
-  PeriodDescription,
-  PeriodSelect,
+  Description,
+  Select,
   Chart
 }
