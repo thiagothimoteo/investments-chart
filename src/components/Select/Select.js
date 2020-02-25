@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react'
 import styled from 'styled-components'
 import { icons } from '../../constants'
 
@@ -45,13 +45,19 @@ const StyledSelectContainer = styled.div`
 `
 
 const Select = ({ value, options, onChange, ...rest }) => {
+  const [selectedValue, setValue] = useState(value)
   const handleChange = event => {
-    onChange(event.target.value)
+    const selectedOption = event.target.value
+
+    setValue(selectedOption)
+    if (onChange) {
+      onChange(selectedOption)
+    }
   }
 
   return (
     <StyledSelectContainer>
-      <select value={value} onChange={handleChange} {...rest}>
+      <select value={selectedValue} onChange={handleChange} {...rest}>
         {
           options.map((option, index) => (
             <option key={index} value={option.value}>
