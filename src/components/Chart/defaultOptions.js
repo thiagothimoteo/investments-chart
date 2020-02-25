@@ -7,8 +7,6 @@ const parseToCurrency = (value) => {
 
 export default {
   legend: false,
-  elements: {
-  },
   tooltips: {
     callbacks: {
       label: (tooltipItem) => parseToCurrency(tooltipItem.yLabel)
