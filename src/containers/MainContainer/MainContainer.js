@@ -2,7 +2,7 @@ import React, { useEffect, useContext } from 'react';
 import styled from 'styled-components';
 import { Description, Select, Chart } from '../../components';
 import Context from '../../Context';
-import { periods } from '../../constants'
+import { periods, icons } from '../../constants'
 
 const apiURL = process.env.REACT_APP_INVESTMENTS_API_URL
 
@@ -58,7 +58,7 @@ const MainContainer = () => {
         <Select value={period} options={selectOptions} onChange={handlePeriodChange} />
       </header>
       <main>
-        <Description>
+        <Description role="heading" icon={icons.calendar}>
           Você está vendo o período <strong>{ periods[period] }</strong>
         </Description>
         <Chart data={filteredChartData} />
