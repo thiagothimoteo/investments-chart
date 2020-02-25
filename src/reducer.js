@@ -7,46 +7,66 @@ const initialState = {
 }
 
 const reducer = (state, action) => {
-  let filteredChartData = []
-
   switch(action.type) {
     case 'fetch_data':
       return { ...state, chartData: action.payload, filteredChartData: action.payload }
     case 'change_period':
       return { ...state, period: action.payload }
     case 'filter_by_last_month':
-      const last_month = moment().subtract(1, 'month').month()
-      filteredChartData = state.chartData.filter(
-        item => moment(new Date(item[0])).month() === last_month
-      )
+      const lastMonthData = state.chartData.filter(filterByLastMonth)
 
-      return { ...state, filteredChartData }
+      return { ...state, filteredChartData: lastMonthData }
     case 'filter_by_last_three_months':
-      const last_three_months = moment().subtract(3, 'months').startOf('month')
-      filteredChartData = state.chartData.filter(
-        item => moment(new Date(item[0])) > last_three_months &&
-        moment(new Date(item[0])) <= moment()
-      )
+      const lastThreeMonthsData = state.chartData.filter(filterByLastThreeMonths)
 
-      return { ...state, filteredChartData: filteredChartData }
+      return { ...state, filteredChartData: lastThreeMonthsData }
     case 'filter_by_last_year':
-      const last_year = moment().subtract(1, 'year').year()
-      filteredChartData = state.chartData.filter(item => moment(new Date(item[0])).year() === last_year)
+      const lastYearData = state.chartData.filter(filterByLastYear)
 
-      return { ...state, filteredChartData }
+      return { ...state, filteredChartData: lastYearData }
     case 'filter_by_last_two_years':
-      const last_two_years = moment().subtract(2, 'years')
-      filteredChartData = state.chartData.filter(item =>
-        moment(new Date(item[0])).year() > last_two_years.year() &&
-        moment(new Date(item[0])).year() < moment().year()
-      )
+      const lastTwoYearsData = state.chartData.filter(filterByLastTwoYears)
 
-      return { ...state, filteredChartData }
+      return { ...state, filteredChartData: lastTwoYearsData }
     case 'filter_by_all_time':
       return { ...state, filteredChartData: state.chartData }
     default:
       throw new Error()
   }
+}
+
+const filterByLastMonth = item => {
+  const date = new Date(item[0])
+  const lastMonth = moment().subtract(1, 'month').month()
+  const month = moment(date).month()
+
+  return month === lastMonth
+}
+
+const filterByLastThreeMonths = item => {
+  const date = new Date(item[0])
+  const threeMonthsBack = moment().subtract(3, 'months').startOf('month')
+  const momentDate = moment(date)
+  const now = moment()
+
+  return momentDate > threeMonthsBack && momentDate <= now
+}
+
+const filterByLastYear = item => {
+  const date = new Date(item[0])
+  const lastYear = moment().subtract(1, 'year').year()
+  const year = moment(date).year()
+
+  return year === lastYear
+}
+
+const filterByLastTwoYears = item => {
+  const date = new Date(item[0])
+  const twoYearsBack = moment().subtract(2, 'years')
+  const year = moment(date).year()
+  const currentYear = moment().year()
+
+  return year > twoYearsBack.year() && year < currentYear
 }
 
 export { reducer, initialState }
