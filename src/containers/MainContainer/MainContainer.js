@@ -7,7 +7,8 @@ import { periods } from '../../constants'
 const apiURL = process.env.REACT_APP_INVESTMENTS_API_URL
 
 const StackContainer = styled.div`
-  width: 960px;
+  width: 100%;
+  max-width: 960px;
   padding: 2rem;
   margin: 0 auto;
   display: grid;

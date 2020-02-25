@@ -1,4 +1,12 @@
 import React from 'react';
+import styled from 'styled-components'
+
+const StyledSelect = styled.select`
+  padding: .5rem 2rem .5rem .5rem;
+  background-color: #fff;
+  border: 1px solid #ccc;
+  border-radius: 3px;
+`
 
 const Select = ({ value, options, onChange, ...rest }) => {
   const handleChange = event => {
@@ -6,7 +14,7 @@ const Select = ({ value, options, onChange, ...rest }) => {
   }
 
   return (
-    <select value={value} onChange={handleChange} {...rest}>
+    <StyledSelect value={value} onChange={handleChange} {...rest}>
       {
         options.map((option, index) => (
           <option key={index} value={option.value}>
@@ -14,7 +22,7 @@ const Select = ({ value, options, onChange, ...rest }) => {
           </option>
         ))
       }
-    </select>
+    </StyledSelect>
   )
 }
 
