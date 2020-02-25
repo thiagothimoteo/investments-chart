@@ -21,6 +21,7 @@ export default {
         display: true,
       },
       type: 'time',
+      distribution: 'series',
       time: {
         tooltipFormat: 'DD MMM YY',
         unit: 'day',
