@@ -9,16 +9,10 @@ describe('#ChartContainer', () => {
     fetch.resetMocks()
   })
 
-  xit('...', async () => {
+  it('renders correctly', async () => {
     fetch.mockResponseOnce(JSON.stringify(
-      [
-        1565308800000,
-        24960
-      ],
-      [
-        1565568000000,
-        24960
-      ],
+      [1565308800000, 24960],
+      [1565568000000, 24960],
     ))
 
     let renderChartContainer = {}
@@ -29,14 +23,16 @@ describe('#ChartContainer', () => {
           <ChartContainer />
         </StateProvider>
       )
+
+      const { getByText } = renderChartContainer
+      const blankslate = getByText('Não há dados a serem mostrados')
+
+      expect(blankslate).toBeInTheDocument()
     })
 
-    const { container, getByText } = renderChartContainer
-    const blankslate = getByText('Não há dados a serem mostrados')
+    const { container } = renderChartContainer
+    const chart = container.querySelector('canvas')
 
-    expect(blankslate).toBeInTheDocument()
-
-    const chart = waitForElement(() => )
-    expect(container.querySelector('canvas')).toBeInTheDocument()
+    expect(chart).toBeInTheDocument()
   })
 })
