@@ -1,17 +1,24 @@
-import React, { useReducer } from 'react';
-import { Provider } from './Context'
-import { reducer, initialState } from './reducer'
-import { MainContainer } from './containers/MainContainer';
+import React from 'react'
+import { ChartContainer, PeriodContainer } from './containers'
+import styled from 'styled-components'
+
+const StackContainer = styled.div`
+  width: 100%;
+  max-width: 960px;
+  padding: 2rem;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-row-gap: 2rem;
+`
 
 const App = () => {
-  const [state, dispatch] = useReducer(reducer, initialState)
-  const value = { state, dispatch }
-
   return (
-    <Provider value={value}>
-      <MainContainer />
-    </Provider>
-  );
+    <StackContainer>
+      <PeriodContainer />
+      <ChartContainer />
+    </StackContainer>
+  )
 }
 
 export default App;
