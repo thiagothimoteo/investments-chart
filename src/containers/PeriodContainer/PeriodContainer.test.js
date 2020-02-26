@@ -5,7 +5,7 @@ import PeriodContainer from './PeriodContainer'
 
 describe('#PeriodContainer', () => {
 
-  it('...', () => {
+  it('renders correctly', () => {
     const { container, getAllByText } = render(
       <StateProvider>
         <PeriodContainer />
@@ -18,6 +18,16 @@ describe('#PeriodContainer', () => {
     expect(select).toBeInTheDocument()
     expect(select.value).toBe('all_time')
     expect(periodLabels.length).toBe(2)
+  })
+
+  it('changes period', () => {
+    const { container, getAllByText } = render(
+      <StateProvider>
+        <PeriodContainer />
+      </StateProvider>
+    )
+
+    const select = container.querySelector('select')
 
     fireEvent.change(select, { target: { value: 'last_three_months' }})
 
