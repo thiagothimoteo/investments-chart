@@ -1,34 +1,26 @@
-import React, { useState, useEffect } from 'react'
-import { Line } from "react-chartjs-2"
-import defaultOptions from './defaultOptions'
+import React from 'react'
+import { Line } from 'react-chartjs-2'
+import styled from 'styled-components'
 
-const Chart = ({ data, customOptions, ...rest }) => {
-  const options = { ...defaultOptions, ...customOptions }
-  const [chartData, setChartData] = useState({
-    labels: [],
-    datasets: [{ data: [] }]
-  })
+const StyledBlankslate = styled.div`
+  display: flex;
+  font-size: 1.25rem;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  padding: 4rem;
+  background-color: #f5f5f5;
+`
 
-  const formatData = data => {
-    return data.map(item => ({
-      t: new Date(item[0]),
-      y: item[1]
-    }))
-  }
+const Chart = ({ data, options, ...rest }) => {
+  return Object.keys(data).length > 0
+    ? <Line data={data} options={options} {...rest} />
+    : <StyledBlankslate>Não há dados a serem mostrados</StyledBlankslate>
+}
 
-  const formatLabel = data => {
-    return data.map(item => new Date(item[0]))
-  }
-
-  useEffect(() => {
-    const items = formatData(data)
-    const labels = formatLabel(data)
-    const backgroundColor = 'rgba(52, 152, 219, 0.75)'
-
-    setChartData({ labels, datasets: [{ data: items, backgroundColor }] })
-  }, [data])
-
-  return <Line data={chartData} options={options} {...rest} />
+Chart.defaultProps = {
+  data: {},
+  options: {}
 }
 
 export default Chart
