@@ -1,10 +1,24 @@
-import React from 'react';
-import { render, waitForElement } from '@testing-library/react';
-import App from './App';
+import React from 'react'
+import { render } from '@testing-library/react'
+import { StateProvider } from './store'
+import App from './App'
+import { act } from 'react-dom/test-utils'
 
 describe('#App', () => {
   it('renders correctly', async () => {
-    const { container, getByRole, getByText } = render(<App />);
+    fetch.mockResponseOnce(JSON.stringify({ foo: 'bar' }))
+
+    let renderApp = {}
+
+    await act(async() => {
+      renderApp = render(
+        <StateProvider>
+          <App />
+        </StateProvider>
+      )
+    })
+
+    const { container, getByRole, getByText } = renderApp
     const select = container.querySelector('select')
     const description = getByRole('heading')
     const blankslate = getByText('Não há dados a serem mostrados')
@@ -12,10 +26,5 @@ describe('#App', () => {
     expect(select.value).toBe('all_time')
     expect(description).toBeInTheDocument()
     expect(blankslate).toBeInTheDocument()
-
-    const chart = await waitForElement(() => container.querySelector('canvas'))
-
-    expect(chart).toBeInTheDocument()
-    expect(blankslate).not.toBeInTheDocument()
   })
 })
