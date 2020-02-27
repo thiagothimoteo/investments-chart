@@ -6,22 +6,22 @@ import PeriodContainer from './PeriodContainer'
 describe('#PeriodContainer', () => {
 
   it('renders correctly', () => {
-    const { container, getAllByText } = render(
+    const { container, getByText } = render(
       <StateProvider>
         <PeriodContainer />
       </StateProvider>
     )
 
     const select = container.querySelector('select')
-    const periodLabels = getAllByText('Desde o Início')
+    const periodLabel = getByText('Desde o Início')
 
     expect(select).toBeInTheDocument()
     expect(select.value).toBe('all_time')
-    expect(periodLabels.length).toBe(2)
+    expect(periodLabel).toBeInTheDocument()
   })
 
   it('changes period', () => {
-    const { container, getAllByText } = render(
+    const { container, getByText } = render(
       <StateProvider>
         <PeriodContainer />
       </StateProvider>
@@ -31,9 +31,9 @@ describe('#PeriodContainer', () => {
 
     fireEvent.change(select, { target: { value: 'last_three_months' }})
 
-    const newPeriodLabels = getAllByText('Últimos 3 meses')
+    const newPeriodLabel = getByText('Últimos 3 meses')
 
     expect(select.value).toBe('last_three_months')
-    expect(newPeriodLabels.length).toBe(2)
+    expect(newPeriodLabel).toBeInTheDocument()
   })
 })
