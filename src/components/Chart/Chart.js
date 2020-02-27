@@ -9,13 +9,13 @@ const StyledBlankslate = styled.div`
   justify-content: center;
   width: 100%;
   padding: 4rem;
-  background-color: #f5f5f5;
+  color: #7171a6;
 `
 
 const Chart = ({ data, options, ...rest }) => {
   return Object.keys(data).length > 0
     ? <Line data={data} options={options} {...rest} />
-    : <StyledBlankslate>Não há dados a serem mostrados</StyledBlankslate>
+    : <StyledBlankslate>Não há dados a serem mostrados nesse período</StyledBlankslate>
 }
 
 Chart.defaultProps = {
