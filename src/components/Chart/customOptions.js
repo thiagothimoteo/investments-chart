@@ -1,15 +1,10 @@
-const parseToCurrency = (value) => {
-  const localesOptions = { minimumFractionDigits: 2 }
-  const formattedValue = value.toLocaleString('pt-BR', localesOptions)
-
-  return `R$ ${formattedValue}`
-}
+import { numberToCurrency } from '../../helpers'
 
 export default {
   legend: false,
   tooltips: {
     callbacks: {
-      label: (tooltipItem) => parseToCurrency(tooltipItem.yLabel)
+      label: (tooltipItem) => numberToCurrency(tooltipItem.yLabel)
     }
   },
   scales: {
@@ -41,7 +36,7 @@ export default {
     yAxes: [{
       position: 'right',
       ticks: {
-        callback: (value) => parseToCurrency(value),
+        callback: (value) => numberToCurrency(value),
         fontColor: '#888'
       }
     }]
