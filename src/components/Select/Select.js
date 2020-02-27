@@ -5,12 +5,14 @@ import { icons } from '../../constants'
 const StyledSelectContainer = styled.div`
   position: relative;
   background-color: #fff;
-  border: 1px solid #ccc;
+  box-shadow: 0 0 0 1px #e6e6ff;
   border-radius: 3px;
+  color: #7171a6;
 
   > select {
     appearance: none;
     display: block;
+    color: currentColor;
     padding: .5rem 2rem;
     background-color: transparent;
     border: 0;
@@ -32,6 +34,7 @@ const StyledSelectContainer = styled.div`
     left: 0;
     background-image: url(${icons.calendar});
     transform: translate(50%, -50%);
+    opacity: .65;
   }
 
   &:after {
@@ -40,7 +43,7 @@ const StyledSelectContainer = styled.div`
     right: 0;
     background-image: url(${icons.angle_down});
     transform: translate(-50%, -50%);
-    opacity: .65;
+    opacity: .55;
   }
 `
 

@@ -5,9 +5,11 @@ const StyledDescription = styled.div`
   display: flex;
   padding: 1rem 1.5rem;
   margin-bottom: 2rem;
-  background-color: #eee;
   align-items: center;
-  opacity: .65;
+  color: #7171a6;
+  background-color: #fff;
+  box-shadow: 0 2px 8px rgba(41,41,64,.1);
+  border-radius: 4px;
 `
 
 const StyledIcon = styled.img`

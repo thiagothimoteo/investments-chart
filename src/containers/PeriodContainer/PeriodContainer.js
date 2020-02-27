@@ -2,7 +2,7 @@ import React, { useContext } from 'react'
 import styled from 'styled-components'
 import store from '../../store'
 import { Description, Select } from '../../components'
-import { periods, icons } from '../../constants'
+import { periods } from '../../constants'
 
 const setSelectOptions = () => {
   return Object.keys(periods).map(value => ({
@@ -39,8 +39,8 @@ const PeriodContainer = () => {
   return (
     <StyledHeader>
       <Select value={period} options={selectOptions} onChange={handlePeriodChange} />
-      <Description role="heading" icon={icons.calendar}>
-        Você está vendo o período <strong>{ periods[period] }</strong>
+      <Description role="heading">
+        Você está vendo o período <strong>{ periods[period].toLowerCase() }</strong>.
       </Description>
     </StyledHeader>
   )

@@ -16,6 +16,7 @@ export default {
     xAxes: [{
       gridLines: {
         display: false,
+        tickMarkLength: 15
       },
       scaleLabel: {
         display: true,
@@ -29,11 +30,19 @@ export default {
           day: 'DD MMM YY',
         }
       },
+      ticks: {
+        source: 'data',
+        autoSkip: true,
+        autoSkipPadding: 20,
+        maxRotation: 0,
+        fontColor: '#888',
+      }
     }],
     yAxes: [{
       position: 'right',
       ticks: {
-        callback: (value) => parseToCurrency(value)
+        callback: (value) => parseToCurrency(value),
+        fontColor: '#888'
       }
     }]
   }

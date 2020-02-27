@@ -37,7 +37,7 @@ const ChartContainer = () => {
     if (filteredChartData.length > 0) {
       const items = formatData(filteredChartData)
       const labels = formatLabel(filteredChartData)
-      const backgroundColor = 'rgba(52, 152, 219, 0.75)'
+      const backgroundColor = 'rgba(150, 150, 215, 0.75)'
 
       setChartData({ labels, datasets: [{ data: items, backgroundColor }] })
     }
