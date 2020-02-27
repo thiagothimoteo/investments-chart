@@ -26,4 +26,4 @@ Launches the test runner in the interactive watch mode.
 
 ## Contributing
 
-It's nice that you want contribute, but, that's still a working in progress.
+It's nice that you want to contribute, but, that's still a working in progress.
