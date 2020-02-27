@@ -25,7 +25,7 @@ describe('#ChartContainer', () => {
       )
 
       const { getByText } = renderChartContainer
-      const blankslate = getByText('Não há dados a serem mostrados')
+      const blankslate = getByText('Não há dados a serem mostrados nesse período.')
 
       expect(blankslate).toBeInTheDocument()
     })

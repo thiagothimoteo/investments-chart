@@ -9,6 +9,7 @@ const ChartContainer = () => {
   const [chartData, setChartData] = useState({})
   const { state, dispatch } = useContext(store)
   const { period, filteredChartData } = state
+  const [error, setError] = useState(null)
 
   const formatData = data => {
     return data.map(item => ({
@@ -23,11 +24,16 @@ const ChartContainer = () => {
 
   useEffect(() => {
     const getChartData = async () => {
-      const response = await fetch(apiURL)
-      const data = await response.json()
+      try {
+        const response = await fetch(apiURL)
+        const data = await response.json()
 
-      dispatch({ type: 'fetch_data', payload: data })
-      dispatch({ type: `filter_by_${period}` })
+        dispatch({ type: 'fetch_data', payload: data })
+        dispatch({ type: `filter_by_${period}` })
+      } catch(error) {
+        setError({ message: error })
+      }
+
     }
 
     getChartData()
@@ -45,7 +51,11 @@ const ChartContainer = () => {
 
   return (
     <main>
-      <Chart data={chartData} options={chartCustomOptions} />
+      <Chart
+        data={chartData}
+        options={chartCustomOptions}
+        error={error}
+      />
     </main>
   )
 }

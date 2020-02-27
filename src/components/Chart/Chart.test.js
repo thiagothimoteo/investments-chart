@@ -19,7 +19,14 @@ describe('#Chart', () => {
 
   it('renders chart blankslate correctly', () => {
     const { getByText } = render(<Chart />)
-    const blankslate = getByText('Não há dados a serem mostrados')
+    const blankslate = getByText('Não há dados a serem mostrados nesse período.')
+
+    expect(blankslate).toBeInTheDocument()
+  })
+
+  it('renders chart with error correctly', () => {
+    const { getByText } = render(<Chart error={{ message: 'error' }} />)
+    const blankslate = getByText('Ocorreu um erro ao buscar os dados. Tente novamente.')
 
     expect(blankslate).toBeInTheDocument()
   })

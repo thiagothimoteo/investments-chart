@@ -21,7 +21,7 @@ describe('#App', () => {
     const { container, getByRole, getByText } = renderApp
     const select = container.querySelector('select')
     const description = getByRole('heading')
-    const blankslate = getByText('Não há dados a serem mostrados')
+    const blankslate = getByText('Não há dados a serem mostrados nesse período.')
 
     expect(select.value).toBe('all_time')
     expect(description).toBeInTheDocument()

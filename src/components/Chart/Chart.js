@@ -12,10 +12,12 @@ const StyledBlankslate = styled.div`
   color: #7171a6;
 `
 
-const Chart = ({ data, options, ...rest }) => {
+const Chart = ({ data, options, error, ...rest }) => {
+  if (error) return <StyledBlankslate>Ocorreu um erro ao buscar os dados. Tente novamente.</StyledBlankslate>
+
   return Object.keys(data).length > 0
     ? <Line data={data} options={options} {...rest} />
-    : <StyledBlankslate>Não há dados a serem mostrados nesse período</StyledBlankslate>
+    : <StyledBlankslate>Não há dados a serem mostrados nesse período.</StyledBlankslate>
 }
 
 Chart.defaultProps = {
